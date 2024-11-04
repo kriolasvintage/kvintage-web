@@ -46,7 +46,7 @@ export default async function Footer() {
                     <Mail className="w-5 h-5" />
                   </a>
                   <a 
-                    href="https://www.instagram.com/kriolasvintage" 
+                    href="https://www.instagram.com/kriolas.vintage" 
                     target="_blank" 
                     rel="noreferrer"
                     className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"
