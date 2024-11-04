@@ -29,7 +29,7 @@ export default async function Home({
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
-          <div class='sk-instagram-feed' data-embed-id='25483320'></div><script src='https://widgets.sociablekit.com/instagram-feed/widget.js' async defer></script>
+          <iframe src='https://widgets.sociablekit.com/instagram-feed/iframe/25483320' frameborder='0' width='100%' height='400px'></iframe>
         </ul>
       </div>
     </>
