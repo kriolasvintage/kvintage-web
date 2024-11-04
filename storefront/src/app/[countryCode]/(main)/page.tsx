@@ -29,7 +29,12 @@ export default async function Home({
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
-          <iframe src='https://widgets.sociablekit.com/instagram-feed/iframe/25483320' frameborder='0' width='100%' height='400px'></iframe>
+          <iframe
+            src="https://widgets.sociablekit.com/instagram-feed/iframe/25483320"
+            frameBorder="0"
+            width="100%"
+            height="400px"
+          ></iframe>
         </ul>
       </div>
     </>
