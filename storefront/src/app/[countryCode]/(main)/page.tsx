@@ -5,6 +5,7 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
+import Categories from "./categories/page"
 
 export const metadata: Metadata = {
   title: "Kriolas Vintage",
@@ -34,7 +35,7 @@ export default async function Home({
           {/* Card Man */}
           <a
             href="/categories/man"
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/man.jpg"
@@ -51,7 +52,7 @@ export default async function Home({
           {/* Card Women */}
           <a
             href="/categories/woman"
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/woman.jpg"
@@ -68,7 +69,7 @@ export default async function Home({
           {/* Card Kids */}
           <a
             href="/categories/kids"
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/kid.jpg"
@@ -86,13 +87,15 @@ export default async function Home({
 
 
       <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-base-regular text-gray-600 mb-6">
+        <span className="text-lg-regular text-gray-600 mb-6">
           Explore All Categories
         </span>
         <p className="text-2xl-regular text-ui-fg-base max-w-lg">
           Discover the perfect product by browsing our categories
         </p>
       </div>
+
+      <Categories />
 
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
