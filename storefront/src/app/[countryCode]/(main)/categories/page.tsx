@@ -24,14 +24,14 @@ export default function Categories() {
       offset: `${offset}`,
     })
 
-    fetch(`http://localhost:9000/store/product-categories?${
-      searchParams.toString()
-    }`, {
-      credentials: "include",
-      headers: {
-        "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
-      },
-    })
+    fetch(`http://localhost:9000/store/product-categories?${searchParams.toString()}`, {
+        credentials: "include",
+        headers: new Headers(
+          process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+            ? { "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY }
+            : undefined
+        ),
+      })
     .then((res) => res.json())
     .then(({ product_categories, count }) => {
       setCategories((prev) => {
