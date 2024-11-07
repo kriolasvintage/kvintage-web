@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import Image from "next/image"  // Add this import at the top
+import { Search, CircleUser, ShoppingCart } from "lucide-react"
 
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
@@ -26,7 +27,7 @@ export default async function Nav() {
               className="flex items-center gap-2 txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-              <Image src="/logo.jpeg" alt="Kriolas Vintage Logo" width={32} height={32} />
+              <Image src="/logo.jpg" alt="Kriolas Vintage Logo" width={40} height={40} />
               Kriolas Vintage
             </LocalizedClientLink>
           </div>
@@ -48,14 +49,14 @@ export default async function Nav() {
                 href="/store"
                 data-testid="nav-products-link"
               >
-                Browse
+                <Search className="w-3 h-3" />
               </LocalizedClientLink>
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Account
+                <CircleUser className="w-3 h-3" />
               </LocalizedClientLink>
             </div>
             <Suspense
@@ -65,7 +66,7 @@ export default async function Nav() {
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  Cart (0)
+                  <ShoppingCart className="w-3 h-3" /> (0)
                 </LocalizedClientLink>
               }
             >
