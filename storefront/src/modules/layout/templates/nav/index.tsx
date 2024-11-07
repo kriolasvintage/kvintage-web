@@ -49,21 +49,21 @@ export default async function Nav() {
                 href="/store"
                 data-testid="nav-products-link"
               >
-                <Search className="w-3 h-3" />
+                <Search className="w-4 h-4" />
               </LocalizedClientLink>
               {/* <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/categories"
                 data-testid="nav-products-link"
               >
-                <Search className="w-3 h-3" />
+                <Search className="w-4 h-4" />
               </LocalizedClientLink> */}
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                <CircleUser className="w-3 h-3" />
+                <CircleUser className="w-4 h-4" />
               </LocalizedClientLink>
             </div>
             <Suspense
@@ -73,7 +73,7 @@ export default async function Nav() {
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  <ShoppingCart className="w-3 h-3" /> (0)
+                  <ShoppingCart className="w-4 h-4" /> (0)
                 </LocalizedClientLink>
               }
             >

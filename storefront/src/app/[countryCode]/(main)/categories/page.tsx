@@ -24,7 +24,7 @@ export default function Categories() {
       offset: `${offset}`,
     })
 
-    fetch(`http://localhost:9000/store/product-categories?${searchParams.toString()}`, {
+    fetch(`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/product-categories?${searchParams.toString()}`, {
         credentials: "include",
         headers: new Headers(
           process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
