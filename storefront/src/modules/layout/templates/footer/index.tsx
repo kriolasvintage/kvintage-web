@@ -67,7 +67,7 @@ export default async function Footer() {
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
                 >
-                  {product_categories?.slice(0, 6).map((c) => {
+                  {product_categories?.slice(0, 3).map((c) => {
                     if (c.parent_category) {
                       return
                     }
