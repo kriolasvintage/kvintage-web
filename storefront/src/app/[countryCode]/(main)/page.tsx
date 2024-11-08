@@ -35,7 +35,7 @@ export default async function Home({
           {/* Card Man */}
           <a
             href="/categories/man"
-            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/man.jpg"
@@ -52,7 +52,7 @@ export default async function Home({
           {/* Card Women */}
           <a
             href="/categories/woman"
-            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/woman.jpg"
@@ -69,7 +69,7 @@ export default async function Home({
           {/* Card Kids */}
           <a
             href="/categories/kids"
-            className="relative w-90 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
               src="/cards/kid.jpg"
@@ -84,16 +84,6 @@ export default async function Home({
           </a>
         </div>
       </section>
-
-
-      <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-lg-regular text-gray-600 mb-6">
-          Explore All Categories
-        </span>
-        <p className="text-2xl-regular text-ui-fg-base max-w-lg">
-          Discover the perfect product by browsing our categories
-        </p>
-      </div>
 
       <Categories />
 
