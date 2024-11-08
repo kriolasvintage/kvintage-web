@@ -24,7 +24,7 @@ export default function Categories() {
   }, [])
 
   return (
-    <div className="flex flex-col items-center text-center mb-16">
+    <div className="flex flex-col items-center text-center mb-16 mt-4">
       <span className="text-xl-regular text-gray-600 mb-6">
         Explore All Categories
       </span>
@@ -32,7 +32,7 @@ export default function Categories() {
         Discover the perfect product by browsing our categories
       </p>
 
-      <div className="grid grid-cols-5 gap-x-8 w-full mt-4">
+      <div className="grid grid-cols-5 gap-x-8 w-full">
         {loading && (
           <div className="flex justify-center items-center w-full h-full col-span-5">
             <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
@@ -42,7 +42,7 @@ export default function Categories() {
         {!loading && categories.length > 0 && categories.map((category, index) => (
           <div
             key={category.id}
-            className={`py-4 px-6 flex justify-center ${index % 5 !== 4 ? 'border-r border-gray-300' : ''}`}
+            className={`py-4 flex justify-center ${index % 5 !== 4 ? 'border-r border-gray-300' : ''}`}
           >
             <Link
               className="flex flex-col items-center group transition duration-300"
