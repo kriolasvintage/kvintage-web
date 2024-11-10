@@ -3,7 +3,7 @@
 // import { Text, clx } from "@medusajs/ui"
 import { Text } from "@medusajs/ui"
 
-import { Instagram, Mail, MapPin } from "lucide-react"
+import { Instagram, Mail, MapPin, Phone, PhoneCall } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default async function Footer() {
@@ -23,6 +23,25 @@ export default async function Footer() {
             </LocalizedClientLink>
             
             <div className="flex flex-col gap-y-3">
+              <Text className="flex items-center text-ui-fg-subtle hover:text-ui-fg-base transition-colors">
+                <Mail className="w-5 h-5 mr-2" />
+                <a 
+                  href="mailto:contact@kvintage.dk" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="hover:underline"
+                >
+                  contact@kvintage.dk
+                </a>
+              </Text>
+
+              <Text className="flex items-center text-ui-fg-subtle hover:text-ui-fg-base transition-colors">
+                <Phone className="w-5 h-5 mr-2" />
+                <span className="hover:underline">
+                  +45 81742555
+                </span>
+              </Text>
+
               <Text className="flex items-center text-ui-fg-subtle hover:text-ui-fg-base transition-colors">
                 <MapPin className="w-5 h-5 mr-2" />
                 <a 
@@ -45,6 +64,14 @@ export default async function Footer() {
                     className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"
                   >
                     <Mail className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="https://wa.me/4581742555" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"
+                  >
+                    <PhoneCall className="w-5 h-5" />
                   </a>
                   <a 
                     href="https://www.instagram.com/kriolas.vintage" 

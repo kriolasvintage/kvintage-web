@@ -6,6 +6,7 @@ import Refresh from "@modules/common/icons/refresh"
 
 import Accordion from "./accordion"
 import { HttpTypes } from "@medusajs/types"
+import { BadgeDollarSign, Box } from "lucide-react"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -109,6 +110,24 @@ const ShippingInfoTab = () => {
               Just return your product and we&apos;ll refund your money. No
               questions asked – we&apos;ll do our best to make sure your return
               is hassle-free.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start gap-x-2">
+          <Box />
+          <div>
+            <span className="font-semibold">EU Shipping</span>
+            <p className="max-w-sm">
+              We ship to all EU countries with GLS, DAO and PostNord.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start gap-x-2">
+          <BadgeDollarSign />
+          <div>
+            <span className="font-semibold">VAT</span>
+            <p className="max-w-sm">
+              We don{"'"}t charge no Danish vat. Regarding customs fees, vat or other taxes please contact your local customs department.
             </p>
           </div>
         </div>
