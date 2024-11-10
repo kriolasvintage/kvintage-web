@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="h-[75vh] w-full border-b border-ui-border-base relative">
       <Image
-        src="/hero-image.jpg"
+        src="/hero-image.jpeg"
         alt="Hero background"
         fill
         className="object-cover"
@@ -17,7 +17,7 @@ const Hero = () => {
             level="h1"
             className="text-4xl leading-10 text-white font-extrabold"
           >
-            Revive the Style, Rewrite Fashion
+            Find it, Love it, Keep it!
           </Heading>
           <Heading
             level="h3"

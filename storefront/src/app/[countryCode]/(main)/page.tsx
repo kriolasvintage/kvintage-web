@@ -38,14 +38,14 @@ export default async function Home({
             className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <Image
-              src="/cards/man.jpg"
-              alt="Man Category"
+              src="/cards/men.jpg"
+              alt="Men Category"
               layout="fill"
               objectFit="cover"
               quality={80}
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-              <span className="text-white font-bold text-3xl">Man</span>
+              <span className="text-white font-bold text-3xl">Men</span>
             </div>
           </a>
 
