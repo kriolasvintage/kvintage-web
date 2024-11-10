@@ -24,7 +24,7 @@ export default function Categories() {
   }, [])
 
   return (
-    <div className="flex flex-col items-center text-center mb-16 mt-4">
+    <div className="flex flex-col items-center text-center mb-16 mt-20">
       <span className="text-xl-regular text-gray-600 mb-6">
         Explore All Categories
       </span>
@@ -42,13 +42,13 @@ export default function Categories() {
         {!loading && categories.length > 0 && categories.map((category, index) => (
           <div
             key={category.id}
-            className={`py-4 flex justify-center ${index % 5 !== 4 ? 'border-r border-gray-300' : ''} truncate`}
+            className={`py-4 flex justify-center ${index % 5 !== 4 ? 'border-r border-gray-200' : ''} truncate`}
           >
             <Link
               className="flex flex-col items-center group transition duration-300"
               href={`/categories/${category.handle}`}
             >
-              <span className="relative text-center truncate max-w-[90%]">
+              <span className="relative text-center truncate">
                 {category.name}
                 <span className="absolute left-1/2 transform -translate-x-1/2 -bottom-1 w-3/4 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
               </span>
