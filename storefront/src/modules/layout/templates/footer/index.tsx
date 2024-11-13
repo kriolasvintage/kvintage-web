@@ -3,7 +3,7 @@
 // import { Text, clx } from "@medusajs/ui"
 import { Text } from "@medusajs/ui"
 
-import { Instagram, Mail, MapPin, Phone, PhoneCall } from "lucide-react"
+import { Instagram, Facebook, Mail, MapPin, Phone, PhoneCall } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default async function Footer() {
@@ -80,6 +80,14 @@ export default async function Footer() {
                     className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"
                   >
                     <Instagram className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="https://www.facebook.com/people/kriolas-vintage/61568418897278/" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"
+                  >
+                    <Facebook className="w-5 h-5" />
                   </a>
                 </div>
               </div>
