@@ -16,11 +16,11 @@ type PaymentContainerProps = {
 }
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({
-  paymentProviderId,
-  selectedPaymentOptionId,
-  paymentInfoMap,
-  disabled = false,
-}) => {
+                                                             paymentProviderId,
+                                                             selectedPaymentOptionId,
+                                                             paymentInfoMap,
+                                                             disabled = false,
+                                                           }) => {
   const isDevelopment = process.env.NODE_ENV === "development"
 
   return (
