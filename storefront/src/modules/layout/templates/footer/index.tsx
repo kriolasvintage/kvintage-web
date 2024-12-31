@@ -82,7 +82,7 @@ export default async function Footer() {
                     <Instagram className="w-5 h-5" />
                   </a>
                   <a 
-                    href="https://www.facebook.com/people/kriolas-vintage/61568418897278/" 
+                    href="https://www.facebook.com/profile.php?id=61568418897278" 
                     target="_blank" 
                     rel="noreferrer"
                     className="text-ui-fg-subtle hover:text-ui-fg-base transition-colors"

@@ -57,3 +57,4 @@ dump.rdb
 /playwright/.auth
 
 package-lock.json
+pnpm-lock.yaml

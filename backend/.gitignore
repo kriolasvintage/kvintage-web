@@ -28,3 +28,4 @@ build
 !.yarn/versions
 
 package-lock.json
+pnpm-lock.yaml
