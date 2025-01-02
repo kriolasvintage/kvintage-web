@@ -1,140 +1,135 @@
-"use client"
+"use client";
 
-import { Metadata } from "next"
-import Image from "next/image"
-import { useState } from "react"
-import MegaMenu from "@modules/home/components/mega-menu"
+import { Metadata } from "next";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import MegaMenu from "@modules/home/components/mega-menu";
 
 export const metadata: Metadata = {
   title: "Kriolas Vintage",
   description:
     "Kriolas Vintage is a vintage clothing store that sells high-quality, pre-owned clothing.",
+};
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
+const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY;
+
+interface ProductCategory {
+  id: string;
+  name: string;
+  description: string;
+  handle: string;
+  rank: number;
+  parent_category_id: string | null;
+  created_at: string;
+  updated_at: string;
+  metadata: any | null;
+  parent_category: ProductCategory | null;
+  category_children: ProductCategory[];
 }
 
-const menuItems = [
-  {
-    label: "Clothing",
-    href: "/categories/clothing",
-    children: [
-      { label: "Jacket & Coats", href: "/categories/jacket-&-coats" },
-      { label: "Dresses", href: "/categories/dresses" },
-      { label: "Trousers", href: "/categories/trousers" },
-      { label: "Tops", href: "/categories/tops" },
-      { label: "Jeans", href: "/categories/jeans" },
-      { label: "Shirts & Blouses", href: "/categories/shirts-&-blouses" },
-      { label: "Blazers & Waistcoats", href: "/categories/blazers-&-waistcoats" },
-      { label: "Knitwear", href: "/categories/knitwear" },
-      { label: "Bags", href: "/categories/bags" },
-      { label: "Skirts", href: "/categories/skirts" }
-    ],
-  },
-  {
-    label: "Accessories",
-    href: "/categories/accessories",
-    children: [
-      { label: "Bags", href: "/categories/bags" },
-      { label: "Hats", href: "/categories/hats" },
-      { label: "Belts", href: "/categories/belts" },
-      { label: "Hair Accessories", href: "/categories/hair-accessories" },
-      { label: "Gloves", href: "/categories/gloves" },
-      { label: "Sunglasses", href: "/categories/sunglasses" },
-      { label: "Wallets & Purses", href: "/categories/wallets-&-purses" },
-      { label: "Jewellery", href: "/categories/jewellery", children: [
-        { label: "Bracelets", href: "/categories/bracelets" },
-        { label: "Earrings", href: "/categories/earrings" },
-        { label: "Necklace", href: "/categories/necklace" },
-        { label: "Rings", href: "/categories/rings" },
-        { label: "Scarves", href: "/categories/scarves" },
-      ], },
-    ],
-  },
-  {
-    label: "Shoes",
-    href: "/categories/shoes",
-    children: [
-      { label: "Others", href: "/categories/others" }
-    ],
-  },
-]
+async function getCategories(): Promise<ProductCategory[]> {
+  const response = await fetch(`${BACKEND_URL}/store/product-categories/`, {
+    headers: {
+      "x-publishable-api-key": PUBLISHABLE_API_KEY!,
+    },
+    next: { revalidate: 3600 },
+  });
+  const data = await response.json();
+  return data.product_categories;
+}
+
+function findCategoryWithChildren(
+  categories: ProductCategory[],
+  targetName: string
+): ProductCategory | null {
+  const category = categories.find(
+    (cat) => cat.name.trim().toLowerCase() === targetName.trim().toLowerCase()
+  );
+  if (!category) return null;
+
+  const getChildren = (categoryId: string) =>
+    categories.filter((cat) => cat.parent_category_id === categoryId);
+
+  function buildCategoryTree(category: ProductCategory): ProductCategory {
+    const children = getChildren(category.id);
+    return {
+      ...category,
+      category_children: children.map(buildCategoryTree),
+    };
+  }
+
+  return buildCategoryTree(category);
+}
 
 export default function CategoriesSelector() {
-  const [showMegaMenu, setShowMegaMenu] = useState(false)
+  const [categories, setCategories] = useState<Record<string, ProductCategory | null>>({});
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const allCategories = await getCategories();
+        setCategories({
+          Man: findCategoryWithChildren(allCategories, "Man"),
+          Woman: findCategoryWithChildren(allCategories, "Woman"),
+          Kids: findCategoryWithChildren(allCategories, "Kids"),
+        });
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }
+    fetchCategories();
+  }, []);
+
+  const renderMegaMenu = (categoryKey: string) => {
+    const category = categories[categoryKey];
+    if (!category) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center pt-10">
+        <div className="relative bg-white w-full max-w-4xl p-8 rounded-lg shadow-xl">
+          <div className="flex justify-end">
+            <button
+              onClick={() => setActiveMenu(null)}
+              className="bg-gray-200 hover:bg-gray-300 rounded-full w-12 h-12 flex items-center justify-center z-60 shadow-lg mb-3"
+            >
+              ✕
+            </button>
+          </div>
+          
+          <MegaMenu items={category.category_children} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
-      {/* Section */}
       <section className="py-20 bg-gray-100">
         <div className="flex justify-center gap-8">
-          {/* Card Man */}
-          <a
-            href="/categories/man"
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-          >
-            <Image
-              src="/cards/men.jpg"
-              alt="Men Category"
-              layout="fill"
-              objectFit="cover"
-              quality={80}
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-              <span className="text-white font-bold text-3xl">Men</span>
+          {["Man", "Woman", "Kids"].map((key) => (
+            <div
+              key={key}
+              className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              onClick={() => setActiveMenu(key)}
+            >
+              <Image
+                src={`/cards/${key.toLowerCase()}.jpg`}
+                alt={`${key} Category`}
+                fill
+                className="object-cover"
+                quality={80}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                <span className="text-white font-bold text-3xl">{key}</span>
+              </div>
             </div>
-          </a>
-
-          {/* Card Women */}
-          <div
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-            onClick={() => setShowMegaMenu(true)}
-          >
-            <Image
-              src="/cards/woman.jpg"
-              alt="Women Category"
-              layout="fill"
-              objectFit="cover"
-              quality={80}
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-              <span className="text-white font-bold text-3xl">Women</span>
-            </div>
-          </div>
-
-          {/* Card Kids */}
-          <a
-            href="/categories/kids"
-            className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-          >
-            <Image
-              src="/cards/kid.jpg"
-              alt="Kids Category"
-              layout="fill"
-              objectFit="cover"
-              quality={80}
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-              <span className="text-white font-bold text-3xl">Kids</span>
-            </div>
-          </a>
+          ))}
         </div>
       </section>
-        {/* Fullscreen MegaMenu */}
-        {showMegaMenu && (
-            <div className="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center pt-10">
-                <div className="relative bg-white w-full max-w-4xl p-8 rounded-lg shadow-xl z-50">
-                    {/* Botão de Fechar */}
-                    <div className="flex justify-end">
-                        <button
-                            onClick={() => setShowMegaMenu(false)}
-                            className="bg-gray-200 hover:bg-gray-300 rounded-full w-12 h-12 flex items-center justify-center z-60 shadow-lg mb-3"
-                        >
-                            ✕
-                        </button>
-                    </div>
 
-                    <MegaMenu items={menuItems} />
-                </div>
-            </div>
-        )}
+      {activeMenu && renderMegaMenu(activeMenu)}
     </>
-  )
+  );
 }
