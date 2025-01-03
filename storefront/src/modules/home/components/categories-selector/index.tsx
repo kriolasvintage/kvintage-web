@@ -44,7 +44,7 @@ function findCategoryWithChildren(
   targetName: string
 ): ProductCategory | null {
   const category = categories.find(
-    (cat) => cat.name.trim().toLowerCase() === targetName.trim().toLowerCase()
+    (cat) => cat.handle.trim().toLowerCase() === targetName.trim().toLowerCase()
   );
   if (!category) return null;
 
