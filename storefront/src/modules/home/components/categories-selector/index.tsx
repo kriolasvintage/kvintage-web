@@ -71,8 +71,8 @@ export default function CategoriesSelector() {
       try {
         const allCategories = await getCategories();
         setCategories({
-          Man: findCategoryWithChildren(allCategories, "Man"),
-          Woman: findCategoryWithChildren(allCategories, "Woman"),
+          Men: findCategoryWithChildren(allCategories, "Men"),
+          Women: findCategoryWithChildren(allCategories, "Women"),
           Kids: findCategoryWithChildren(allCategories, "Kids"),
         });
       } catch (error) {
@@ -108,7 +108,7 @@ export default function CategoriesSelector() {
     <>
       <section className="py-20 bg-gray-100">
         <div className="flex justify-center gap-8">
-          {["Man", "Woman", "Kids"].map((key) => (
+          {["Men", "Women", "Kids"].map((key) => (
             <div
               key={key}
               className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
