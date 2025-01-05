@@ -7,7 +7,6 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { HttpTypes } from "@medusajs/types"
 
 const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
-  console.log(orders)
   if (orders?.length) {
     return (
       <div className="flex flex-col gap-y-8 w-full">

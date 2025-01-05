@@ -30,21 +30,16 @@ function mapCategoriesToMenuItems(categories: ProductCategory[]): MenuItem[] {
 }
 
 const MegaMenu: React.FC<MegaMenuProps> = ({ items }) => {
-  // Converte os itens antes de renderizar
-  const menuItems = mapCategoriesToMenuItems(items)
-
-  console.log("itens: ", menuItems)
+  const menuItems = mapCategoriesToMenuItems(items);
 
   return (
     <div className="relative z-50 w-full h-full">
-      {/* Main Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {menuItems.map((item) => (
           <div
             key={item.label}
             className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
           >
-            {/* Main Category */}
             <Link
               href={item.href}
               className="block text-2xl font-extrabold text-gray-800 group-hover:text-indigo-600 transition-colors duration-200"
@@ -52,7 +47,6 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ items }) => {
               {item.label}
             </Link>
 
-            {/* Subcategories */}
             {item.children && item.children.length > 0 && (
               <ul className="mt-4 space-y-3">
                 {item.children.map((child) => (
@@ -99,7 +93,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ items }) => {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default MegaMenu

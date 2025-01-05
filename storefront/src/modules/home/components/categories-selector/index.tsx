@@ -29,7 +29,7 @@ interface ProductCategory {
 }
 
 async function getCategories(): Promise<ProductCategory[]> {
-  const response = await fetch(`${BACKEND_URL}/store/product-categories/`, {
+  const response = await fetch(`${BACKEND_URL}/store/product-categories/?limit=0`, {
     headers: {
       "x-publishable-api-key": PUBLISHABLE_API_KEY!,
     },
@@ -53,6 +53,7 @@ function findCategoryWithChildren(
 
   function buildCategoryTree(category: ProductCategory): ProductCategory {
     const children = getChildren(category.id);
+
     return {
       ...category,
       category_children: children.map(buildCategoryTree),
@@ -88,8 +89,8 @@ export default function CategoriesSelector() {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center pt-10">
-        <div className="relative bg-white w-full max-w-4xl p-8 rounded-lg shadow-xl">
-          <div className="flex justify-end">
+        <div className="relative bg-white w-full max-w-4xl p-8 rounded-lg shadow-xl overflow-auto max-h-screen border-l-4 border-r-4 border-gray-300">
+          <div className="flex justify-end mt-7 lg:mt-3">
             <button
               onClick={() => setActiveMenu(null)}
               className="bg-gray-200 hover:bg-gray-300 rounded-full w-12 h-12 flex items-center justify-center z-60 shadow-lg mb-3"
